@@ -1,8 +1,27 @@
-<mat-card>
-    <mat-card-title>Actions Buttons</mat-card-title>
-    <mat-card-subtitle>Start</mat-card-subtitle>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-</mat-card>
+<form dForm [layout]="layoutDirection" ngForm (dSubmit)="submitForm()" [formGroup]="loginFormGroup">
+    <d-form-item>
+        <d-form-label [required]="true" [hasHelp]="true" [helpTips]="'用户名'">Username
+        </d-form-label>
+        <d-form-control>
+            <div>
+                <input dTextInput autocomplete="off" formControlName="username"
+                    [dValidateRules]="formRules['usernameRules']" />
+            </div>
+        </d-form-control>
+    </d-form-item>
+    <d-form-item>
+        <d-form-label [required]="true">Password</d-form-label>
+        <d-form-control>
+            <div>
+                <input dTextInput autocomplete="off" formControlName="password"
+                    [dValidateRules]="formRules['usernameRules']" />
+            </div>
+        </d-form-control>
+    </d-form-item>
+    <d-form-operation>
+        <d-button bsStyle="primary" class="mr-element-spacing" circled="true" style="margin-right: 4px" dFormSubmit>
+            Submit
+        </d-button>
+        <d-button bsStyle="common" circled="true">Cancel</d-button>
+    </d-form-operation>
+</form>
