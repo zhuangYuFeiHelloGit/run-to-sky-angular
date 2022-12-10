@@ -5,6 +5,7 @@ import { LoginContainerComponent } from "./containers/login.container";
 import { LoginRoutingModule } from "./login-routing.module";
 
 import { DevUIModule } from 'ng-devui';
+import { LoginService } from "./login-service";
 @NgModule({
     declarations: [
         LoginComponent,
@@ -15,6 +16,9 @@ import { DevUIModule } from 'ng-devui';
         DevUIModule,
         FormsModule,
         ReactiveFormsModule
+    ],
+    providers: [
+        LoginService
     ]
 })
 export class LoginModule {

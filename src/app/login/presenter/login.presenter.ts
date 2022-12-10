@@ -3,10 +3,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
 import { LoginEntity } from '../login-entity';
 import { DValidateRules } from "ng-devui";
+import { LoginService } from '../login-service';
 @Component({
     template: ''
 })
 export class LoginPresenter implements OnDestroy {
+
+    constructor(private loginService: LoginService) {
+        console.log('loginService', loginService);
+        
+    }
 
     ngOnDestroy(): void {
         this.commit.complete();
@@ -50,6 +56,7 @@ export class LoginPresenter implements OnDestroy {
             password: this.loginFormGroup.get('password')?.value
         }
         this.commit.next(login)
+        this.loginService.loginPost(login)
     }
 
 }
