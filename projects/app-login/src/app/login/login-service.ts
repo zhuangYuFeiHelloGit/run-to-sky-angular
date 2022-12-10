@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, tap, catchError } from "rxjs";
-import { BaseResponse } from "../base-response";
+import { BaseResponse } from "lib-layout";
 import { LoginEntity } from "./login-entity";
 
 @Injectable()

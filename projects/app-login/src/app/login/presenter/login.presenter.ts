@@ -51,12 +51,14 @@ export class LoginPresenter implements OnDestroy {
 
     public login(): void {
         console.log('----登录成功----', this.loginFormGroup);
-        let login:LoginEntity = {
-            username: this.loginFormGroup.get('username')?.value,
-            password: this.loginFormGroup.get('password')?.value
+        if (this.loginFormGroup.valid) {
+            let login:LoginEntity = {
+                username: this.loginFormGroup.get('username')?.value as string,
+                password: this.loginFormGroup.get('password')?.value as string
+            }
+            this.commit.next(login)
+            this.loginService.loginPost(login)
         }
-        this.commit.next(login)
-        this.loginService.loginPost(login)
     }
 
 }

@@ -13,10 +13,10 @@ import { LoginModule } from './login/login.module';
     AppComponent
   ],
   imports: [
+    DevUIModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     BrowserModule,
-    BrowserAnimationsModule,
-    DevUIModule,
     AppRoutingModule,
     LoginModule
   ],

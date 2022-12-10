@@ -3,36 +3,34 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "run-to-sky-angular": {
+    "app-login": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/app-login",
+      "sourceRoot": "projects/app-login/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/run-to-sky-angular",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/app-login",
+            "index": "projects/app-login/src/index.html",
+            "main": "projects/app-login/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/app-login/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/app-login/src/favicon.ico",
+              "projects/app-login/src/assets"
             ],
             "styles": [
-              "node_modules/ng-devui/devui.min.css",
-              "src/styles.scss"
+              "projects/app-login/src/styles.scss"
             ],
             "scripts": []
           },
@@ -48,12 +46,6 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -73,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "run-to-sky-angular:build:production"
+              "browserTarget": "app-login:build:production"
             },
             "development": {
-              "browserTarget": "run-to-sky-angular:build:development"
+              "browserTarget": "app-login:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,30 +76,62 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "run-to-sky-angular:build"
+            "browserTarget": "app-login:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/app-login/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/app-login/src/favicon.ico",
+              "projects/app-login/src/assets"
             ],
             "styles": [
-              "node_modules/ng-devui/devui.min.css",
-              "src/styles.scss"
+              "projects/app-login/src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
+    },
+    "lib-layout": {
+      "projectType": "library",
+      "root": "projects/lib-layout",
+      "sourceRoot": "projects/lib-layout/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/lib-layout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lib-layout/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/lib-layout/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/lib-layout/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
-  },
-  "defaultProject": "run-to-sky-angular"
+  }
 }
